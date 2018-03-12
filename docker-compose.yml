@@ -1,0 +1,22 @@
+version: '3.2'
+services:
+  web_server:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - type: bind
+        source: ./nginx/simple_flask.conf
+        target: /etc/nginx/conf.d/simple_flask.conf
+    depends_on:
+      - web_app
+    networks:
+      - ngoctq-network  
+  web_app:
+    build: ./app     
+    ports:
+      - "8000:8000"
+    networks:
+      - ngoctq-network
+networks:
+  ngoctq-network:
