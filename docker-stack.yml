@@ -1,0 +1,26 @@
+version: '3.2'
+services:
+  web_server:
+    image: nginx
+    ports:
+      - "80:80"
+    deploy:
+      mode: global  
+    volumes:
+      - type: bind
+        source: ./nginx/simple_flask.conf
+        target: /etc/nginx/conf.d/simple_flask.conf
+    depends_on:
+      - web_app
+    networks:
+      - ngoctq_my-network 
+  web_app:
+    image: ngoctq/python-web-app-docker-test    
+    ports:
+      - "8000:8000"
+    deploy:
+      mode: global
+    networks:
+      - ngoctq_my-network
+networks:
+  ngoctq_my-network:
