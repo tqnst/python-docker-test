@@ -13,7 +13,7 @@ services:
     depends_on:
       - web_app
     networks:
-      - ngoctq-network  
+      - my-network  
   web_app:
     build: ./app     
     ports:
@@ -21,6 +21,6 @@ services:
     deploy:
       mode: global
     networks:
-      - ngoctq-network
+      - my-network
 networks:
-  ngoctq-network:
+  my-network:
