@@ -4,6 +4,8 @@ services:
     image: nginx
     ports:
       - "80:80"
+    deploy:
+      mode: global  
     volumes:
       - type: bind
         source: ./nginx/simple_flask.conf
@@ -16,6 +18,8 @@ services:
     build: ./app     
     ports:
       - "8000:8000"
+    deploy:
+      mode: global
     networks:
       - ngoctq-network
 networks:
