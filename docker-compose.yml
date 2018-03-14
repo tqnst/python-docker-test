@@ -15,7 +15,7 @@ services:
     networks:
       - ngoctq_my-network 
   web_app:
-    image: 127.0.0.1:8000/web_app
+    image: 127.0.0.1:5000/web_app
     build: ./app     
     ports:
       - "8000:8000"
