@@ -10,6 +10,9 @@ services:
       - type: bind
         source: ./nginx/simple_flask.conf
         target: /etc/nginx/conf.d/simple_flask.conf
+      - type: bind
+        source: ./nginx/default.conf
+        target: /etc/nginx/conf.d/default.conf  
     depends_on:
       - web_app
     networks:
