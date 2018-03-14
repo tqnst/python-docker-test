@@ -1,11 +1,15 @@
 version: '3.2'
 services:
   web_server:
-    image: ngoctq/nginx-docker-test
+    image: nginx
     ports:
       - "80:80"
     deploy:
       mode: global  
+    volumes:
+      - type: bind
+        source: ./nginx/simple_flask.conf
+        target: /etc/nginx/conf.d/simple_flask.conf
     depends_on:
       - web_app
     networks:
