@@ -27,6 +27,7 @@ services:
       - ngoctq_my-network
   redis:
     image: "redis:alpine"
-        
+    networks:
+      - ngoctq_my-network 
 networks:
   ngoctq_my-network:
