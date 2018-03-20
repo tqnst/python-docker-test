@@ -4,11 +4,11 @@ from redis.sentinel import Sentinel
 
 application = Flask(__name__)
 
-sentinel = Sentinel([(54.178.186.218, 26379), (52.199.211.78, 26379)], socket_timeout=0.1)
-sentinel.discover_masters('redis_master')
-setinel.discover_slaves('redis_master')
-master = sentinel.master_for('redis_master', socket_timeout=0.1)
-slave = sentinel.salve_for('redis_master', socket_timeout=0.1)
+sentinel = Sentinel([(54.178.186.218, 26379), (52.199.211.78, 26379), (13.231.104.253, 26379)], socket_timeout=0.1)
+sentinel.discover_masters('mymaster')
+setinel.discover_slaves('mymaster')
+master = sentinel.master_for('mymaster', socket_timeout=0.1)
+slave = sentinel.salve_for('mymaster', socket_timeout=0.1)
 
 @application.route("/")
 def hello():
