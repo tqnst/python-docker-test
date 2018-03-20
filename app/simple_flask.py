@@ -1,11 +1,20 @@
 from flask import Flask
 from redis import Redis
+from redis.sentinel import Sentinel
+
 application = Flask(__name__)
-redis = Redis(host='redis', port=6379)
+
+sentinel = Sentinel([(54.178.186.218, 26379), (52.199.211.78, 26379)], socket_timeout=0.1)
+sentinel.discover_masters('redis_master')
+setinel.discover_slaves('redis_master')
+master = sentinel.master_for('redis_master', socket_timeout=0.1)
+slave = sentinel.salve_for('redis_master', socket_timeout=0.1)
 
 @application.route("/")
 def hello():
-    count = redis.incr('hits')
+    count = master.get('test_count')
+    print 'count = ' + str(count)
+    master.set('test_count', count + 1)
     return "<h1 style='color:red'>Hello World!</h1><br/>" + str(count)
 
 if __name__ == "__main__":

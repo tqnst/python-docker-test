@@ -27,6 +27,8 @@ services:
       - ngoctq_my-network
   redis:
     image: "redis:alpine"
+    ports:
+      - "6379:6379"
     networks:
       - ngoctq_my-network 
 networks:
